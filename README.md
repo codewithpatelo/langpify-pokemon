@@ -7,7 +7,7 @@ A multi-agent system built with Langpify/LangGraph/LangChain and FastAPI for ans
 
 ![alt text](Langpify.png)
 
-Langpify acts as a meta-framework, abstracting away the specifics of each agent/LLM framework (LangChain, CrewAI, AutoGen, etc). This allows:
+Langpify acts both as a meta-framework and as an Agent Development Kit, abstracting away the specifics of each agent/LLM framework (LangChain, CrewAI, AutoGen, etc). This allows:
 - **Framework agnosticism**: Swap orchestration engines without changing your business logic
 - **Cleaner code**: Separation of concerns, less boilerplate
 - **Easy extension**: Add new agents, tools, or switch LLM providers with minimal changes
