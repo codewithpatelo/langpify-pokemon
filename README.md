@@ -144,7 +144,7 @@ This repository provides a robust, extensible, and production-ready multi-agent 
 
 ## 🤖 Agents & Interaction
 
-- **Supervisor Agent**: Orchestrates the battle, delegates to other agents, and aggregates results.
+- **Supervisor Agent**: Analize user inputs, orchestrates, delegates to other agents, and aggregates results.
 - **Researcher Agent**: Gathers and analyzes Pokémon data (stats, types, etc).
 - **Expert Agent**: Provides reasoning and verdict on battle outcome based on Pokémon characteristics.
 
