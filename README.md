@@ -323,49 +323,6 @@ For more verbose output, use:
 python -m pytest -v
 ```
 
-## Project Structure
-
-```
-pokemon-multi-agent/
-├── app/
-│   ├── __init__.py
-│   ├── main.py                  # FastAPI application
-│   ├── agents/
-│   │   ├── __init__.py
-│   │   ├── supervisor.py        # Supervisor Agent Prompt and Tools
-│   │   ├── researcher.py        # Researcher Agent Prompt and Tools
-│   │   ├── pokemon_expert.py    # Pokémon Expert Agent Prompt and Tools
-│   │   └── visualizer.py        # Visualizer Agent Prompt and Tools
-│   ├── graph/
-│   │   ├── __init__.py
-│   │   └── agent_graph.py       # LangGraph configuration
-│   ├── models/
-│   │   ├── __init__.py
-│   │   └── schemas.py           # Pydantic models for API
-│   ├── static/
-│   │   └── battle_tester.html   # Web UI for testing battle visualizations
-│   └── utils/
-│       ├── __init__.py
-│       ├── pokemon_utils.py     # Utility functions for Pokémon data
-│       ├── mock_battle.py       # Mock battle utilities for testing
-│       └── visualization_utils.py # Utilities for generating battle visualizations
-├── tests/
-│   ├── __init__.py
-│   ├── conftest.py              # Test fixtures and configuration
-│   ├── pytest.ini               # Pytest configuration
-│   ├── test_routes.py           # API routes tests
-│   ├── test_tools.py            # Tools functionality tests
-│   └── test_pokemon_utils.py    # Pokemon utils tests
-├── .github/
-│    └── workflows/
-│        ├── deploy-cloudrun.yml # Cloud Run deployment workflow
-│        └── test.yml            # Test workflow
-├── Dockerfile
-├── docker-compose.yml
-├── Makefile
-├── requirements.txt
-└── README.md
-```
 
 ## Agent Graph
 
