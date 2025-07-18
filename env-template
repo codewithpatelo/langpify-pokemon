@@ -1,0 +1,34 @@
+# API Keys
+# Required for the LLM provider (OpenAI by default)
+
+ENVIRONMENT=DEVELOPMENT
+
+MODEL_PROVIDER="groq"
+OPENAI_API_KEY="your_openai_api_key"
+
+GROQ_API_KEY=your_groq_api_key
+
+
+# Application Settings
+
+# Server settings
+# Optional: Port for the API (default: 8000)
+# PORT=8000
+
+# Optional: Host for the API (default: 0.0.0.0)
+# HOST=0.0.0.0
+
+# Optional: Debug mode (default: false)
+
+
+# Langsmith Settings (Optional)
+# Langsmith settings
+# LANGSMITH_TRACING=true
+# LANGSMITH_ENDPOINT="https://api.smith.langchain.com"
+# LANGSMITH_API_KEY="your_langsmith_api_key"
+# LANGSMITH_PROJECT="your_langsmith_project"
+
+
+# APP CONFIG
+DEBUG=False
+LOG_LEVEL=INFO

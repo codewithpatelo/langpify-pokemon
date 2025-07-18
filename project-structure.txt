@@ -1,0 +1,86 @@
+pokemon-agent-system-main/
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── application/
+│   │   ├── ai_settings/
+│   │   │   ├── __pycache__/
+│   │   │   └── ai_settings_provider.py
+│   │   ├── services/
+│   │   │   ├── __pycache__/
+│   │   │   └── agent_management_service.py
+│   │   └── tools/
+│   │       ├── __pycache__/
+│   │       ├── tools.py
+│   │       └── utils/
+│   │           ├── __pycache__/
+│   │           └── ...
+│   ├── domain/
+│   │   ├── agents/
+│   │   │   ├── __pycache__/
+│   │   │   ├── pokemon_expert/
+│   │   │   │   └── ...
+│   │   │   ├── researcher/
+│   │   │   │   └── ...
+│   │   │   ├── supervisor/
+│   │   │   │   └── ...
+│   │   │   └── templates.py
+│   │   ├── entities/
+│   │   │   ├── __pycache__/
+│   │   │   └── ...
+│   │   ├── settings/
+│   │   │   ├── __pycache__/
+│   │   │   ├── ai_config.yaml
+│   │   │   ├── ai_settings.py
+│   │   │   ├── constants.py
+│   │   │   ├── cors.py
+│   │   │   ├── limiters.py
+│   │   │   ├── log_config.yaml
+│   │   │   ├── routers.py
+│   │   │   └── static.py
+│   │   └── utils/
+│   │       ├── __pycache__/
+│   │       └── utils.py
+│   ├── infrastructure/
+│   │   ├── container/
+│   │   │   ├── __pycache__/
+│   │   │   └── container.py
+│   │   ├── entities/
+│   │   │   ├── __pycache__/
+│   │   │   ├── base_agent.py
+│   │   │   └── entities.py
+│   │   └── ...
+│   ├── presentation/
+│   │   ├── routers/
+│   │   │   ├── __pycache__/
+│   │   │   ├── agent_routers.py
+│   │   │   └── endpoints.py
+│   │   └── static/
+│   │       ├── battle_minimal.html
+│   │       ├── rotom.png
+│   │       └── ...
+│   └── __pycache__/
+├── tests/
+│   ├── README.md
+│   ├── __init__.py
+│   ├── conftest.py
+│   ├── pytest.ini
+│   ├── test_agents.py
+│   ├── test_api.py
+│   ├── test_code_coverage.py
+│   ├── test_pokemon_utils.py
+│   └── test_visualizer.py
+├── .env
+├── .gitignore
+├── .github/
+├── .vscode/
+├── Dockerfile
+├── docker-compose.yml
+├── env-template
+├── graph.mermaid
+├── gunicorn_conf.py
+├── LICENSE
+├── Makefile
+├── project-structure.txt
+├── README.md
+├── requirements.txt
