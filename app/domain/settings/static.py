@@ -5,6 +5,8 @@ import os
 
 def setup_static(app: FastAPI):
     static_directory = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "presentation", "static"
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+        "presentation",
+        "static",
     )
     app.mount("/static", StaticFiles(directory=static_directory), name="static")

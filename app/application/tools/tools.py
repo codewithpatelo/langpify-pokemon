@@ -1,11 +1,13 @@
-from app.application.tools.utils.pokemon_utils import fetch_pokemon_data, analyze_pokemon_battle
+from app.application.tools.utils.pokemon_utils import (
+    fetch_pokemon_data,
+    analyze_pokemon_battle,
+)
 from typing import Dict, Any, Tuple
 from langchain.prompts import PromptTemplate
 from langchain_groq import ChatGroq
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 import os
-
 
 
 load_dotenv()
@@ -86,6 +88,7 @@ def explain_stats(pokemon_data: Dict[str, Any]) -> str:
 
     return response.content
 
+
 def fetch_pokemon_info(pokemon_name: str) -> Dict[str, Any]:
     """
     Fetch information about a specific Pokémon from the PokéAPI
@@ -100,4 +103,3 @@ def fetch_pokemon_info(pokemon_name: str) -> Dict[str, Any]:
         return fetch_pokemon_data(pokemon_name.lower())
     except Exception as e:
         return {"error": str(e)}
-    

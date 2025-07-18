@@ -21,6 +21,7 @@ class PokemonExpertState(BaseModel):
     remaining_steps: The number of remaining steps in the conversation.
     structured_response: The structured output of the agent.
     """
+
     messages: List[BaseMessage] = Field(
         default_factory=list,
         description="Puede contener mensajes LangChain o diccionarios",

@@ -26,7 +26,8 @@ from app.application.tools.tools import fetch_pokemon_info
 
 from langsmith import traceable
 from langchain.schema import SystemMessage, HumanMessage
-#from circuitbreaker import circuit
+
+# from circuitbreaker import circuit
 
 # Configure logger
 logger = logging.getLogger(__name__)
@@ -121,11 +122,9 @@ class AgentManagementService:
                 response_model = PokemonExpertResponse
                 state_schema = PokemonExpertState
                 tools = POKEMON_EXPERT_TOOLS
-                
 
-                
             sub_workflows = []
-            
+
             if template.aid == "supervisor@langpify.agents":
                 sub_workflows.append(self._agents[0].planning["workflow"]["graph"])
                 sub_workflows.append(self._agents[1].planning["workflow"]["graph"])
@@ -175,8 +174,9 @@ class AgentManagementService:
         try:
             # Create agent from template using the class method
             researcher_agent = await self.create_agent_from_template("researcherAgent")
-            pokemon_expert_agent = await self.create_agent_from_template("pokemonExpertAgent")
-            
+            pokemon_expert_agent = await self.create_agent_from_template(
+                "pokemonExpertAgent"
+            )
 
             # Set agent status to ACTIVE
             if researcher_agent:
@@ -185,28 +185,25 @@ class AgentManagementService:
             if pokemon_expert_agent:
                 pokemon_expert_agent.status = LangpifyStatus.ACTIVE
                 agents.append(pokemon_expert_agent)
-                
-                
+
             if researcher_agent and pokemon_expert_agent:
-                supervisor_agent = await self.create_agent_from_template("supervisorAgent")
-                
-                
+                supervisor_agent = await self.create_agent_from_template(
+                    "supervisorAgent"
+                )
+
             if supervisor_agent:
                 supervisor_agent.status = LangpifyStatus.ACTIVE
                 agents.append(supervisor_agent)
 
             return agents
-        
+
         except Exception as e:
-            logger.error(
-                f"Error creating agent from template {aid_prefix}: {str(e)}"
-            )
-            
+            logger.error(f"Error creating agent from template {aid_prefix}: {str(e)}")
 
         return agents
 
     @traceable
-    #@circuit(failure_threshold=3, recovery_timeout=60)
+    # @circuit(failure_threshold=3, recovery_timeout=60)
     async def invoke_agent(self, aid: str, question: str) -> None:
         try:
             for agent in self._agents:
@@ -214,10 +211,9 @@ class AgentManagementService:
                     if agent.status == LangpifyStatus.ACTIVE:
                         messages = [
                             SystemMessage(content=agent.role["prompt"]),
-                            HumanMessage(content=question)
+                            HumanMessage(content=question),
                         ]
-                    
-                        
+
                         initial_state = {
                             "input": question,
                             "messages": messages,
@@ -236,4 +232,3 @@ class AgentManagementService:
         except Exception as e:
             logger.error(f"Error invoking agent {aid}: {str(e)}", exc_info=True)
             raise ValueError(f"Error invoking agent {aid}: {str(e)}")
-

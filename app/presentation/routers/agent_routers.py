@@ -28,10 +28,15 @@ async def serve_battle_minimal(request: Request):
     Sirve la interfaz minimalista para probar el endpoint /agents/system/battle.
     IMPORTANTE: Antes de probar la batalla, asegúrate de inicializar el environment usando el endpoint POST /agents/environment.
     """
-    static_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "presentation/static")
+    static_dir = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+        "presentation/static",
+    )
     file_path = os.path.join(static_dir, "battle_minimal.html")
     if not os.path.exists(file_path):
-        return HTMLResponse("<h2>Archivo battle_minimal.html no encontrado.</h2>", status_code=404)
+        return HTMLResponse(
+            "<h2>Archivo battle_minimal.html no encontrado.</h2>", status_code=404
+        )
     with open(file_path, encoding="utf-8") as f:
         html_content = f.read()
     return HTMLResponse(content=html_content)
@@ -179,7 +184,9 @@ async def chat(
     ],
 ):
     try:
-        agent = await agent_management_service.invoke_agent(aid="supervisor@langpify.agents", question=question)
+        agent = await agent_management_service.invoke_agent(
+            aid="supervisor@langpify.agents", question=question
+        )
         return agent
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -196,30 +203,28 @@ async def battle(
 ):
     """
     Simulates a battle between two Pokémon using the supervisor agent.
-    
+
     Args:
         pokemon1: First Pokémon name (e.g. 'pikachu')
         pokemon2: Second Pokémon name (e.g. 'bulbasaur')
-    
+
     Returns:
         The agent's response with battle analysis
     """
     try:
         # Format the battle question
         question = f"Tell me who would win in a battle between {pokemon1} and {pokemon2}? Provide detailed analysis. Make sure to invoke researcher and pokemon expert."
-        
+
         # Invoke the supervisor agent
         agent_response = await agent_management_service.invoke_agent(
-            aid="supervisor@langpify.agents",
-            question=question
+            aid="supervisor@langpify.agents", question=question
         )
-        
-        return agent_response 
-        
+
+        return agent_response
+
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
     except Exception as e:
         raise HTTPException(
-            status_code=500,
-            detail=f"Error processing battle request: {str(e)}"
+            status_code=500, detail=f"Error processing battle request: {str(e)}"
         )

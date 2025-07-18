@@ -49,6 +49,18 @@ class LangpifyBaseAgent:
         self.role: Optional[LangpifyRole] = role
         self.type: Optional[LangpifyAgentType] = type
 
+        """
+        At productive levels Langpify supports A2A :)
+        self._agent_card = AgentCard(
+            name=self._role.get("name", f"Agente-{self._aid}"),
+            description=self._role.get("content", ""),
+            version="0.1.0",
+            url="",
+            capabilities=[],
+            skills=[],
+        )
+        """
+
         """ LIFECYCLE """
         self.status: LangpifyStatus = status
 
@@ -85,15 +97,11 @@ class LangpifyBaseAgent:
         """ MEMORY MENTAL PROCESSES 
         Reserved for Memory Engines (short-term, long-term)
         """
-        
 
         """ REASONING MENTAL PROCESSES 
         Reserved for CoT and Inference Engines 
         """
-        
+
         """ PERCEPTION MENTAL PROCESSES 
         Reserved for Event Communication 
         """
-        
-
-     

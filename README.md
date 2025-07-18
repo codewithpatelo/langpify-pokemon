@@ -1,9 +1,11 @@
 # Langpify Multi-Agent System for Pokémon
 
-A multi-agent system built with LangGraph/LangChain and FastAPI for answering questions about Pokémon, retrieving Pokémon data, simulating Pokémon battles, and generating battle visualizations.
+A multi-agent system built with Langpify/LangGraph/LangChain and FastAPI for answering questions about Pokémon, retrieving Pokémon data, simulating Pokémon battles.
 
 
 ## 🚀 Why Langpify?
+
+![alt text](Langpify.png)
 
 Langpify acts as a meta-framework, abstracting away the specifics of each agent/LLM framework (LangChain, CrewAI, AutoGen, etc). This allows:
 - **Framework agnosticism**: Swap orchestration engines without changing your business logic
@@ -68,15 +70,12 @@ pokemon-agent-system-main/
 │   │       ├── rotom.png
 │   │       └── ...
 ├── tests/
-│   ├── README.md
 │   ├── __init__.py
-│   ├── conftest.py
-│   ├── pytest.ini
-│   ├── test_agents.py
-│   ├── test_api.py
-│   ├── test_code_coverage.py
-│   ├── test_pokemon_utils.py
-│   └── test_visualizer.py
+│   ├── conftest.py          # Test fixtures and configuration
+│   ├── pytest.ini           # Pytest configuration
+│   ├── test_routes.py       # API routes tests
+│   ├── test_tools.py        # Tools functionality tests
+│   └── test_pokemon_utils.py # Pokemon utilities tests
 ├── .env
 ├── .gitignore
 ├── .github/
@@ -147,9 +146,9 @@ This repository provides a robust, extensible, and production-ready multi-agent 
 
 - **Supervisor Agent**: Orchestrates the battle, delegates to other agents, and aggregates results.
 - **Researcher Agent**: Gathers and analyzes Pokémon data (stats, types, etc).
-- **Expert Agent**: Provides reasoning and verdict on battle outcome.
+- **Expert Agent**: Provides reasoning and verdict on battle outcome based on Pokémon characteristics.
 
-Agents interact via LangGraph workflows, with Langpify providing abstraction and orchestration.
+Agents interact via LangGraph workflows, with Langpify providing abstraction and orchestration. The system uses a multi-agent approach where the Supervisor coordinates the specialized agents to produce comprehensive battle analyses.
 
 ---
 
@@ -168,7 +167,7 @@ You can access the minimal battle GUI at:
 http://localhost:8000/static/battle_minimal.html
 ```
 
-![GUI Screenshot](app/presentation/static/image.png)
+![GUI Screenshot](image.png)
 
 - **Features:**
   - Initialize the environment
@@ -302,6 +301,12 @@ Once the server is running, you can access the API at `http://localhost:8080`.
 
 ## Testing
 
+The project includes comprehensive tests for routes, tools, and utilities. The test suite is organized as follows:
+
+- **test_routes.py**: Tests for the FastAPI routes and endpoints
+- **test_tools.py**: Tests for the agent tools functionality
+- **test_pokemon_utils.py**: Tests for the Pokémon utility functions
+
 Run the tests with:
 
 ```
@@ -309,7 +314,13 @@ make test
 ```
 or
 ```
-pytest
+python -m pytest
+```
+
+For more verbose output, use:
+
+```
+python -m pytest -v
 ```
 
 ## Project Structure
@@ -340,12 +351,11 @@ pokemon-multi-agent/
 │       └── visualization_utils.py # Utilities for generating battle visualizations
 ├── tests/
 │   ├── __init__.py
-│   ├── conftest.py              # Pytest configuration
-│   ├── test_api.py              # API tests
-│   ├── test_agents.py           # Agent tests
-│   ├── test_pokemon_utils.py    # Pokemon utils tests
-│   ├── test_code_coverage.py    # Code coverage tests
-|   └── test_visualization.py    # Visualization tests
+│   ├── conftest.py              # Test fixtures and configuration
+│   ├── pytest.ini               # Pytest configuration
+│   ├── test_routes.py           # API routes tests
+│   ├── test_tools.py            # Tools functionality tests
+│   └── test_pokemon_utils.py    # Pokemon utils tests
 ├── .github/
 │    └── workflows/
 │        ├── deploy-cloudrun.yml # Cloud Run deployment workflow
@@ -366,16 +376,13 @@ graph TD
     supervisor(supervisor):::trainer
     researcher(researcher):::professor
     expert(expert):::elite
-    visualizer(visualizer):::artist
     __end__([__end__]):::last
     
     %% Agent connections
     __start__ --> supervisor
     expert --> supervisor
     researcher --> supervisor
-    visualizer --> supervisor
     
-    supervisor -.-> visualizer
     supervisor -.-> researcher
     supervisor -.-> expert
     supervisor -.-> __end__
@@ -385,13 +392,11 @@ graph TD
     fetch_pokemon_info[fetch_pokemon_info]:::tool
     analyze_battle[analyze_battle]:::tool
     explain_stats[explain_stats]:::tool
-    create_battle_visualization[create_battle_visualization]:::tool
     
     supervisor --- format_response
     researcher --- fetch_pokemon_info
     expert --- analyze_battle
     expert --- explain_stats
-    visualizer --- create_battle_visualization
     
     %% Pokémon-themed styling
     classDef default color:#ffffff,stroke-width:2
@@ -402,7 +407,6 @@ graph TD
     classDef trainer fill:#ee6b2f,stroke:#cc0000,color:#ffffff %% Fire-type/Trainer colors
     classDef professor fill:#3dc7ef,stroke:#2e80cc,color:#ffffff %% Water-type/Professor colors
     classDef elite fill:#f366b9,stroke:#9b6470,color:#ffffff %% Psychic-type/Elite colors
-    classDef artist fill:#7AC74C,stroke:#4a9421,color:#ffffff %% Grass-type/Artist colors
     
     %% Tool styling
     classDef tool fill:#ffde00,stroke:#3b4cca,color:#000000,shape:hexagon

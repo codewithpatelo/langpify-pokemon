@@ -362,33 +362,32 @@ def create_agent_graph(
     prompt_template = generate_prompt_template(prompt)
 
     if framework == Framework.LANGGRAPH:
-        """ In productive environments we would manage states and memory (with config, store and sessions)
-        It is also a good idea to include pooling or streaming for better performance and visual feedback """
+        """In productive environments we would manage states and memory (with config, store and sessions)
+        It is also a good idea to include pooling or streaming for better performance and visual feedback
+        """
         if type == LangpifyAgentType.OPS_AGENT:
-            
+
             workflow = create_react_agent(
                 model=llm["model"],
                 tools=tools,
                 name=name,
                 response_format=response_model,
-                #state_schema=state_schema,
+                # state_schema=state_schema,
                 prompt=prompt_template,
             )
 
             return workflow
 
         elif type == LangpifyAgentType.COORDINATOR_AGENT:
-            
+
             logger.debug(prompt_template)
             workflow = create_supervisor(
                 agents=sub_workflows or [],
                 model=llm["model"],
-                #state_schema=state_schema,
+                # state_schema=state_schema,
                 response_format=response_model,
                 prompt=SUPERVISOR_PROMPT,
                 # In production environments we should use a pre_model_hook with a tool like langpify_filter to sanitize the input
             )
-            
-            
 
             return workflow.compile()

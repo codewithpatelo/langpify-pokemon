@@ -14,14 +14,13 @@ class PokemonBaseStats(BaseModel):
     special_attack: str
     special_defense: str
     speed: str
-    
-
-
 
 
 class ResearcherResponse(BaseModel):
     name: str = Field(..., description="The name of the Pokémon")
-    base_stats: PokemonBaseStats = Field(..., description="The base stats of the Pokémon")
+    base_stats: PokemonBaseStats = Field(
+        ..., description="The base stats of the Pokémon"
+    )
     types: List[str] = Field(..., description="The types of the Pokémon")
 
 
