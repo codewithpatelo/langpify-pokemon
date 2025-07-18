@@ -7,6 +7,14 @@ A multi-agent system built with Langpify/LangGraph/LangChain and FastAPI for ans
 
 ![alt text](Langpify.png)
 
+### Origins
+
+Langpify is an evolution of AopifyJS, a framework introduced in the scientific paper ["Modeling Decision-Making with Intelligent Agents to Aid Rural Commuters in Developing Nations"](https://link.springer.com/chapter/10.1007/978-3-030-20454-9_52) published in Springer. While AopifyJS focused on standardizing agent-oriented programming for explainable symbolic AI systems, Langpify extends these concepts to the era of large language models, creating a bridge between symbolic and sub-symbolic approaches to artificial intelligence.
+
+![Research Paper](paper.png)
+
+### Features
+
 Langpify acts both as a meta-framework and as an Agent Development Kit, abstracting away the specifics of each agent/LLM framework (LangChain, CrewAI, AutoGen, etc). This allows:
 - **Framework agnosticism**: Swap orchestration engines without changing your business logic
 - **Cleaner code**: Separation of concerns, less boilerplate
