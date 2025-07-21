@@ -228,7 +228,7 @@ LOG_LEVEL=INFO
 TEMP_DIR=/tmp
 ```
 
-You can use any compatible LLM provider by modifying the configuration in `app/graph/agent_graph.py`.
+
 
 ### Installation
 
@@ -236,8 +236,8 @@ You can use any compatible LLM provider by modifying the configuration in `app/g
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/pokemon-multi-agent.git
-   cd pokemon-multi-agent
+   git clone https://github.com/codewithpatelo/langpify-pokemon.git
+   cd langpify-pokemon
    ```
 
 2. Create a virtual environment:
