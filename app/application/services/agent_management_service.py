@@ -22,13 +22,14 @@ from app.domain.agents.pokemon_expert.pokemon_expert_models import (
     PokemonExpertState,
     POKEMON_EXPERT_TOOLS,
 )
-from app.application.tools.tools import fetch_pokemon_info
+
 
 from langsmith import traceable
 from langchain.schema import SystemMessage, HumanMessage
 
-# from circuitbreaker import circuit
 
+# In productive environments we should use circuitbreakers
+# from circuitbreaker import circuit
 # Configure logger
 logger = logging.getLogger(__name__)
 
