@@ -96,12 +96,21 @@ class LangpifyBaseAgent:
 
         """ MEMORY MENTAL PROCESSES 
         Reserved for Memory Engines (short-term, long-term)
+        
+        Short-Term -> Session Context | Example: Langgraph's MemorySaver
+        Long-Term -> Episodic, Semantic, Procedural | Example: Langgprah's Store with PostgreSQL + Milvus
+        
+        In productive environments we would work with SQL, Mongodb and/or Vectorial/Graph Databases accordingly
         """
 
         """ REASONING MENTAL PROCESSES 
-        Reserved for CoT and Inference Engines 
+        Reserved for CoT and Inference Engines like Prolog
+        
+        In Langpify we include Decision-Support Algorithms like TOPSIS and other Multi-Criteria Methods.
         """
 
         """ PERCEPTION MENTAL PROCESSES 
         Reserved for Event Communication 
+        
+        Event-based Sensors and Actuators | Fuzzy Thresholds for Reactions
         """
